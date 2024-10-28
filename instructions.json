@@ -60,6 +60,64 @@
           "deliverable": []
         }
       ]
+    },
+    {
+      "id": "T3",
+      "title": "Generate Repository Report",
+      "description": "Generate a comprehensive report on the directories and files in the repository.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T3.1",
+          "title": "Create File Tree Structure",
+          "description": "Create a file tree structure of the repository.",
+          "user_input_needed": false,
+          "suggested_code": "tree -I 'node_modules|.git' > repository_report.md",
+          "dependencies": [],
+          "deliverable": [
+            {
+              "file_name": "repository_report.md",
+              "file_path": "./repository_report.md"
+            }
+          ]
+        },
+        {
+          "id": "T3.2",
+          "title": "Link Files and Directories",
+          "description": "Link each file and directory in the report to its respective content or description.",
+          "user_input_needed": false,
+          "suggested_code": "echo '## Directory and File Descriptions' >> repository_report.md",
+          "dependencies": ["T3.1"],
+          "deliverable": [
+            {
+              "file_name": "repository_report.md",
+              "file_path": "./repository_report.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T4",
+      "title": "Update README",
+      "description": "Update the README file to include a link to the repository report.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T4.1",
+          "title": "Add Link to Repository Report",
+          "description": "Add a link to the repository_report.md file for easy access.",
+          "user_input_needed": false,
+          "suggested_code": "echo 'For a comprehensive report on the directories and files in this repository, please refer to the [repository_report.md](./repository_report.md) file.' >> README.md",
+          "dependencies": ["T3.2"],
+          "deliverable": [
+            {
+              "file_name": "README.md",
+              "file_path": "./README.md"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
