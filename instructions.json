@@ -1,0 +1,65 @@
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Setup and Configure the Extension",
+      "description": "Setup and configure the Copilot extension.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T1.1",
+          "title": "Clone the Repository",
+          "description": "Clone the repository to your local machine.",
+          "user_input_needed": false,
+          "suggested_code": "git clone git@github.com:copilot-extensions/rag-extension.git",
+          "dependencies": [],
+          "deliverable": []
+        },
+        {
+          "id": "T1.2",
+          "title": "Install Dependencies",
+          "description": "Install the necessary dependencies for the project.",
+          "user_input_needed": false,
+          "suggested_code": "go mod tidy",
+          "dependencies": ["T1.1"],
+          "deliverable": []
+        },
+        {
+          "id": "T1.3",
+          "title": "Set Environment Variables",
+          "description": "Set the required environment variables.",
+          "user_input_needed": true,
+          "suggested_code": "export PORT=8080\nexport CLIENT_ID=Iv1.0ae52273ad3193eb\nexport CLIENT_SECRET=\"your_client_secret\"\nexport FQDN=https://6de513480979.ngrok.app",
+          "dependencies": ["T1.2"],
+          "deliverable": []
+        }
+      ]
+    },
+    {
+      "id": "T2",
+      "title": "Deploy the Extension",
+      "description": "Deploy the Copilot extension.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T2.1",
+          "title": "Start ngrok",
+          "description": "Start ngrok with the specified port.",
+          "user_input_needed": false,
+          "suggested_code": "ngrok http http://localhost:8080",
+          "dependencies": ["T1.3"],
+          "deliverable": []
+        },
+        {
+          "id": "T2.2",
+          "title": "Run the Application",
+          "description": "Run the application using the Go command.",
+          "user_input_needed": false,
+          "suggested_code": "go run .",
+          "dependencies": ["T2.1"],
+          "deliverable": []
+        }
+      ]
+    }
+  ]
+}
