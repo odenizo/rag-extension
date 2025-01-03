@@ -1,0 +1,123 @@
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Setup and Configure the Extension",
+      "description": "Setup and configure the Copilot extension.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T1.1",
+          "title": "Clone the Repository",
+          "description": "Clone the repository to your local machine.",
+          "user_input_needed": false,
+          "suggested_code": "git clone git@github.com:copilot-extensions/rag-extension.git",
+          "dependencies": [],
+          "deliverable": []
+        },
+        {
+          "id": "T1.2",
+          "title": "Install Dependencies",
+          "description": "Install the necessary dependencies for the project.",
+          "user_input_needed": false,
+          "suggested_code": "go mod tidy",
+          "dependencies": ["T1.1"],
+          "deliverable": []
+        },
+        {
+          "id": "T1.3",
+          "title": "Set Environment Variables",
+          "description": "Set the required environment variables.",
+          "user_input_needed": true,
+          "suggested_code": "export PORT=8080\nexport CLIENT_ID=Iv1.0ae52273ad3193eb\nexport CLIENT_SECRET=\"your_client_secret\"\nexport FQDN=https://6de513480979.ngrok.app",
+          "dependencies": ["T1.2"],
+          "deliverable": []
+        }
+      ]
+    },
+    {
+      "id": "T2",
+      "title": "Deploy the Extension",
+      "description": "Deploy the Copilot extension.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T2.1",
+          "title": "Start ngrok",
+          "description": "Start ngrok with the specified port.",
+          "user_input_needed": false,
+          "suggested_code": "ngrok http http://localhost:8080",
+          "dependencies": ["T1.3"],
+          "deliverable": []
+        },
+        {
+          "id": "T2.2",
+          "title": "Run the Application",
+          "description": "Run the application using the Go command.",
+          "user_input_needed": false,
+          "suggested_code": "go run .",
+          "dependencies": ["T2.1"],
+          "deliverable": []
+        }
+      ]
+    },
+    {
+      "id": "T3",
+      "title": "Generate Repository Report",
+      "description": "Generate a comprehensive report on the directories and files in the repository.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T3.1",
+          "title": "Create File Tree Structure",
+          "description": "Create a file tree structure of the repository.",
+          "user_input_needed": false,
+          "suggested_code": "tree -I 'node_modules|.git' > repository_report.md",
+          "dependencies": [],
+          "deliverable": [
+            {
+              "file_name": "repository_report.md",
+              "file_path": "./repository_report.md"
+            }
+          ]
+        },
+        {
+          "id": "T3.2",
+          "title": "Link Files and Directories",
+          "description": "Link each file and directory in the report to its respective content or description.",
+          "user_input_needed": false,
+          "suggested_code": "echo '## Directory and File Descriptions' >> repository_report.md",
+          "dependencies": ["T3.1"],
+          "deliverable": [
+            {
+              "file_name": "repository_report.md",
+              "file_path": "./repository_report.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T4",
+      "title": "Update README",
+      "description": "Update the README file to include a link to the repository report.",
+      "user_input_needed": false,
+      "subtasks": [
+        {
+          "id": "T4.1",
+          "title": "Add Link to Repository Report",
+          "description": "Add a link to the repository_report.md file for easy access.",
+          "user_input_needed": false,
+          "suggested_code": "echo 'For a comprehensive report on the directories and files in this repository, please refer to the [repository_report.md](./repository_report.md) file.' >> README.md",
+          "dependencies": ["T3.2"],
+          "deliverable": [
+            {
+              "file_name": "README.md",
+              "file_path": "./README.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
